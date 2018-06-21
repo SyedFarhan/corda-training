@@ -2,6 +2,7 @@ package net.corda.training.contract
 
 import net.corda.core.contracts.CommandData
 import net.corda.core.contracts.Contract
+import net.corda.core.contracts.TypeOnlyCommandData
 import net.corda.core.contracts.requireSingleCommand
 import net.corda.core.transactions.LedgerTransaction
 import net.corda.training.state.IOUState
@@ -25,6 +26,7 @@ class IOUContract : Contract {
         // Add commands here.
         // E.g
         // class DoSomething : TypeOnlyCommandData(), Commands
+        class Issue: TypeOnlyCommandData(), Commands
     }
 
     /**
@@ -36,5 +38,6 @@ class IOUContract : Contract {
         // requireThat {
         //     ...
         // }
+        val command = tx.commands.requireSingleCommand<IOUContract.Commands>()
     }
 }
